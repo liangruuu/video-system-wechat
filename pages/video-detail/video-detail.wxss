@@ -1,0 +1,90 @@
+/* pages/video-detail/video-detail.wxss */
+
+#video-container {
+  width: 100%;
+  height: 400rpx;
+}
+
+.tab-container {
+  width: 100%;
+  padding: 20rpx 20rpx 0 20rpx;
+  /* 防止padding-right失效 */
+  box-sizing: border-box;
+}
+
+.first-floor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+}
+
+.name-container {
+  width: 300rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: -130rpx;
+}
+
+.van-button--info {
+  width: 150rpx;
+}
+
+.second-floor {
+  width: 100%;
+  height: 100rpx;
+  font-weight: bold;
+}
+
+.third-floor {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 25rpx;
+}
+
+.third-floor text {
+  margin-left: 10rpx;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+}
+
+.fourth-floor {
+  width: 100%;
+  margin-top: 10rpx;
+  font-size: 25rpx;
+}
+
+.fifth-floor {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20rpx;
+  font-size: 25rpx;
+}
+
+.fifth-floor view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60rpx;
+  height: 100rpx;
+  margin-right: 40rpx;
+}
+
+.fifth-floor .icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 0rpx;
+}

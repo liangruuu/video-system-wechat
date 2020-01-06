@@ -1,0 +1,41 @@
+<view>
+  <view class='container'>
+    <view class="container-row-first">
+      <view class="name-space">
+        <div wx:if="{{!isLogin}}" class="name" bindtap="toLoginPage">请登录</div>
+        <block wx:elif="{{isUserSelf}}">
+          <div class="name">{{nickName}}</div>
+          <div class="logout" bindtap="logout">注销</div>
+        </block>
+        <block wx:else>
+          <van-button wx:if="{{!isFollowed}}" type="info" size="small" icon="plus" bindtap="focus">关注</van-button>
+          <van-button wx:else type="default" size="small" icon="cross" bindtap="unFocus">取消关注</van-button>
+        </block>
+        <!-- <div wx:else class="name">{{nickName}}</div>
+        <div wx:if="{{isLogin}}" class="logout" bindtap="logout">注销</div> -->
+      </view>
+      <block wx:if="{{isUserSelf}}">
+        <image src="{{avatarUrl}}" class="face" bindtap='changeAvatar'></image>
+      </block>
+      <block wx:else>
+        <image src="{{avatarUrl}}" class="face"></image>
+      </block>
+    </view>
+    <view class='container-row'>
+      <view wx:if='{{isLogin}}'>
+        <div class='info-items'>粉丝{{fansCounts}} </div>
+        <div class='info-items'>关注{{followCounts}} </div>
+        <div class='info-items'>获赞{{receiveLikeCounts}} </div>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="other-container">
+  <block wx:if="{{isLogin}}">
+    <van-tabs active="{{ active }}" bind:change="onChange">
+      <van-tab title="作品">作品</van-tab>
+      <van-tab title="收藏">收藏</van-tab>
+      <van-tab title="关注">关注</van-tab>
+    </van-tabs>
+  </block>
+</view>

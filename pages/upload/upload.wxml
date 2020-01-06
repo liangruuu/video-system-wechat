@@ -1,0 +1,34 @@
+<!--pages/upload/upload.wxml-->
+<view>
+  <form bindsubmit='upload'>
+    <scroll-view scroll-y="true" style="height: 500rpx;">
+      <radio-group name="bgmId">
+        <block wx:for="{{songList}}" wx:for-item="item" wx:key="index">
+          <view class='container'>
+            <iaudio src="{{item.path}}" class="iaudio" songName="{{item.name}}" singer="{{item.author}}"></iaudio>
+            <radio style='margin-top:20px;' value='{{item.id}}'></radio>
+          </view>
+        </block>
+      </radio-group>
+    </scroll-view>
+
+    <view class="inputView">
+      <label class="loginLabel">视频名称：</label>
+      <input name="name" class="inputText" placeholder="请输入视频名称" bindinput="inputWatch" />
+    </view>
+    <view class="inputView">
+      <label class="loginLabel">视频描述：</label>
+      <input name="desc" class="inputText" placeholder="说点什么吧" bindinput="getvideoDesc" />
+    </view>
+
+    <!-- 上传视频文件 -->
+    <view class="uploader">
+      <van-button icon="video" type="primary" bindtap="chooseVideo">选择视频</van-button>
+      <div class="uploader-item">TEST4</div>
+    </view>
+
+    <!-- 提交 -->
+    <button class="submitBtn" type="primary" form-type='submit' disabled="{{btnDisable}}">上传视频</button>
+    <button class="gobackBtn" type="warn" form-type='reset'>重置</button>
+  </form>
+</view>

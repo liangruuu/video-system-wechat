@@ -1,0 +1,21 @@
+<!--components/video-item.wxml-->
+<view class="container">
+  <view class="cover-container">
+    <image style="width:100%;height:250rpx" src="{{serverurl}}{{video.coverPath}}" mode="center" />
+    <view class="video-detail">
+      <view class="detail-item">
+        <image class="item-icon" src='../../resource/images/play_cover.png'></image>
+        <text>{{video.browseCounts}}</text>
+      </view>
+      <view class="detail-item">
+        <image class="item-icon" src='../../resource/images/time.png'></image>
+        <text>{{video.videoSeconds}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="desc-container">
+    <view class="video-title">
+      {{video.videoName}}
+    </view>
+  </view>
+</view>

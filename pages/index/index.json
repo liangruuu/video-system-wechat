@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "video-item": "/components/video-item/video-item",
+    "van-search": "@vant/weapp/search/index"
+  }
+}

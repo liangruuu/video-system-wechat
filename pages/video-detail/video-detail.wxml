@@ -1,0 +1,55 @@
+<!--pages/video-detail/video-detail.wxml-->
+<view class="detail-container">
+  <video id="video-container" src="{{videoSrc}}" muted="{{true}}" object-fit="fill">
+  </video>
+  <van-tabs active="{{ active }}">
+    <van-tab title="简介">
+      <view class="tab-container">
+        <view class="first-floor">
+          <van-image class="avatar" round width="80rpx" height="80rpx" src="{{serverUrl}}{{videoInfo.avatar}}" bindtap="showCreateUser" />
+          <view class="name-container">
+            <text style="font-weight:bolder;">{{videoInfo.nickname}}</text>
+            <text style="font-size:20rpx;color:gray;">23.8万粉丝</text>
+          </view>
+          <van-button type="info" size="small" icon="plus" bindtap="focus">关注</van-button>
+        </view>
+        <view class="second-floor">
+          {{videoInfo.videoName}}
+        </view>
+        <view class="third-floor">
+          <image class="icon" src='../../resource/images/play_cover.png' />
+          <text>{{videoInfo.browseCounts}}</text>
+          <image class="icon" src='../../resource/images/date.png' />
+          <text>{{videoInfo.createTime}}</text>
+        </view>
+        <view class="fourth-floor">
+          <text>{{videoInfo.videoDesc}}</text>
+        </view>
+        <view class="fifth-floor">
+          <view>
+            <block wx:if="{{isLike}}">
+              <image class="icon" src='../../resource/images/like_pink.png' bindtap="likeVideoOrNot" />
+            </block>
+            <block wx:else>
+              <image class="icon" src='../../resource/images/unlike_black.png' bindtap="likeVideoOrNot" />
+            </block>
+            <text>{{videoInfo.likeCounts}}</text>
+          </view>
+          <view>
+            <block wx:if="{{isCollect}}">
+              <image class="icon" src='../../resource/images/uncollect_black.png' />
+            </block>
+            <block wx:else>
+              <image class="icon" src='../../resource/images/collect_pink.png' />
+            </block>
+            <text>{{videoInfo.collectCounts}}</text>
+          </view>
+          <view>
+            <image class="icon" src='../../resource/images/share_black.png' />
+          </view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="评论">内容 2</van-tab>
+  </van-tabs>
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "iaudio":"/components/iaudio/iaudio"
+  }
+}

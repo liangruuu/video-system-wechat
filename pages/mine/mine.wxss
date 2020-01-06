@@ -1,0 +1,118 @@
+page {
+  font-size: 14px;
+}
+
+.container {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.container-row-first {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40rpx;
+}
+
+.name-space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  width: 300rpx;
+  height: 150rpx;
+  background-color: gold;
+  line-height: 150rpx;
+  font-size: 40rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.logout {
+  width: 200rpx;
+  height: 70rpx;
+  background-color: rebeccapurple;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.info-items {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin: 0 30rpx;
+}
+
+.face {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+}
+
+.nickname {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.logout {
+  margin-top: 3px;
+  float: right;
+}
+
+.follow {
+  margin-top: 3px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: gainsboro;
+  margin-top: 1px;
+}
+
+.container-video {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  text-align: center;
+  border: solid 1px;
+  line-height: 30px;
+}
+
+.video-info {
+  width: 100%;
+}
+
+.video-info-selected {
+  background-color: gainsboro;
+}
+
+.container-video-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.videoImage {
+  width: 250rpx;
+  height: 180px;
+}
