@@ -11,7 +11,8 @@
             <text style="font-weight:bolder;">{{videoInfo.nickname}}</text>
             <text style="font-size:20rpx;color:gray;">23.8万粉丝</text>
           </view>
-          <van-button type="info" size="small" icon="plus" bindtap="focus">关注</van-button>
+          <van-button wx:if="{{!isFollowed}}" type="info" size="small" icon="plus" bindtap="focus">关注</van-button>
+          <van-button wx:else type="default" size="small" icon="cross" bindtap="unFocus">取消关注</van-button>
         </view>
         <view class="second-floor">
           {{videoInfo.videoName}}
@@ -33,16 +34,16 @@
             <block wx:else>
               <image class="icon" src='../../resource/images/unlike_black.png' bindtap="likeVideoOrNot" />
             </block>
-            <text>{{videoInfo.likeCounts}}</text>
+            <text>{{likeCounts}}</text>
           </view>
           <view>
             <block wx:if="{{isCollect}}">
-              <image class="icon" src='../../resource/images/uncollect_black.png' />
+              <image class="icon" src='../../resource/images/collect_pink.png' bindtap="collectVideoOrNot" />
             </block>
             <block wx:else>
-              <image class="icon" src='../../resource/images/collect_pink.png' />
+              <image class="icon" src='../../resource/images/uncollect_black.png' bindtap="collectVideoOrNot" />
             </block>
-            <text>{{videoInfo.collectCounts}}</text>
+            <text>{{collectCounts}}</text>
           </view>
           <view>
             <image class="icon" src='../../resource/images/share_black.png' />
