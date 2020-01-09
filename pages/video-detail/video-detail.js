@@ -212,5 +212,17 @@ Page({
         url: '../mine/mine',
       })
     }
+  },
+  addBrowseCount: function() {
+    wx.request({
+      url: this.data.serverUrl + '/video/addbrowsecounts?' + 'videoId=' + this.data.videoId,
+      method: "POST",
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        console.log("count+1:", res.data)
+      }
+    })
   }
 })

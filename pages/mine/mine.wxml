@@ -32,10 +32,30 @@
 </view>
 <view class="other-container">
   <block wx:if="{{isLogin}}">
-    <van-tabs active="{{ active }}" bind:change="onChange">
-      <van-tab title="作品">作品</van-tab>
-      <van-tab title="收藏">收藏</van-tab>
-      <van-tab title="关注">关注</van-tab>
+    <van-tabs active="{{ active }}">
+      <van-tab title="作品" bind:click="getMyVideoList(1)">
+        <view class="video-container">
+          <scroll-view scroll-y="true" bindscrolltolower="lower" lower-threshol="0" style="height:660rpx;">
+            <view class="scroll-view-item">
+              <block wx:for="{{myVideoList}}" wx:for-item="item" wx:key="index">
+                <video-item video="{{item}}" serverurl="{{serverUrl}}" class="video-item" data-arrIndex="{{index}}" />
+              </block>
+            </view>
+          </scroll-view>
+        </view>
+      </van-tab>
+      <van-tab title="收藏" bind:click="getMyCollectList(1)">
+        <view class="video-container">
+          <scroll-view scroll-y="true" bindscrolltolower="lower" lower-threshol="0" style="height:660rpx;">
+            <view class="scroll-view-item">
+              <block wx:for="{{collectVideoList}}" wx:for-item="item" wx:key="index">
+                <video-item video="{{item}}" serverurl="{{serverUrl}}" class="video-item" data-arrIndex="{{index}}" />
+              </block>
+            </view>
+          </scroll-view>
+        </view>
+      </van-tab>
+      <van-tab title="关注" bind:click="getMyFollowList(1)">关注</van-tab>
     </van-tabs>
   </block>
 </view>

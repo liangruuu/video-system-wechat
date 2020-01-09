@@ -11,7 +11,7 @@
     <scroll-view scroll-y="true" bindscrolltolower="lower" lower-threshol="0" style="height:990rpx;">
       <view class="scroll-view-item">
         <block wx:for="{{videoList}}" wx:for-item="item" wx:key="index">
-          <video-item video="{{item}}" serverurl="{{serverUrl}}" class="video-item " data-arrIndex="{{index}}" bindtap="showVideoInfo" />
+          <video-item video="{{item}}" serverurl="{{serverUrl}}" class="video-item" data-arrIndex="{{index}}" bindtap="showVideoInfo" />
         </block>
       </view>
     </scroll-view>

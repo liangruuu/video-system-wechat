@@ -1,6 +1,6 @@
 <!--pages/video-detail/video-detail.wxml-->
 <view class="detail-container">
-  <video id="video-container" src="{{videoSrc}}" muted="{{true}}" object-fit="fill">
+  <video id="video-container" src="{{videoSrc}}" muted="{{true}}" object-fit="fill" autoplay="{{false}}" bindplay="addBrowseCount">
   </video>
   <van-tabs active="{{ active }}">
     <van-tab title="简介">

@@ -53,7 +53,7 @@ Page({
       url: serverUrl + '/video/showvideolist?page=' + page + '&isSaveRecord=' + isSaveRecord,
       method: 'POST',
       data: {
-        videoName: searchContent
+        videoName: searchContent,
       },
       success: function(res) {
         // wx.hideLoading()

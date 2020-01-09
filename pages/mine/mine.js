@@ -7,15 +7,21 @@ Page({
     nickName: "",
     isLogin: app.globalData.isLogin,
     currentUserId: "",
+    serverUrl: app.serverUrl,
     isUserSelf: true,
     isFollowed: false,
 
     myVideoList: [],
     myVideoPage: 1,
+    myVideoTotal: 1,
+
     collectVideoList: [],
     collectVideoPage: 1,
+    collectVideoTotal: 1,
+
     followUserList: [],
-    followUserPage: 1
+    followUserPage: 1,
+    followUserTotal: 1,
   },
   onLoad: function() {},
   onShow: function() {
@@ -23,6 +29,9 @@ Page({
     this.setData({
       isLogin: app.globalData.isLogin
     })
+    if (this.data.isLogin) {
+      this.getMyVideoList(1)
+    }
 
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
@@ -214,10 +223,162 @@ Page({
       }
     })
   },
-  onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: 'none'
-    });
+  getMyCollectList: function(page) {
+    let userId = this.data.currentUserId,
+      serverUrl = app.serverUrl,
+      _this = this
+    wx.showLoading({
+      title: '加载中...'
+    })
+    wx.request({
+      url: serverUrl + '/video/collectvideolist?userId=' + userId + '&page=' + page,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        console.log(res.data)
+        wx.hideLoading()
+        // 判断当前page是否是第一页，如果是第一页，那么设置videoList为空
+        if (page == 1) {
+          _this.setData({
+            collectVideoList: []
+          })
+        }
+        let collectVideoList = res.data.data.rows,
+          newCollectVideoList = _this.data.collectVideoList
+        _this.setData({
+          collectVideoPage: page,
+          collectVideoList: newCollectVideoList.concat(collectVideoList),
+          collectVideoTotal: res.data.data.total,
+        });
+      }
+    })
+  },
+  getMyVideoList: function(page) {
+    let serverUrl = this.data.serverUrl,
+      _this = this
+    wx.showLoading({
+      title: '加载中...'
+    })
+    wx.request({
+      url: serverUrl + '/video/showvideolist?page=' + page + '&pageSize=8',
+      method: 'POST',
+      data: {
+        userId: app.globalData.currentUserId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        console.log("myVideoList:", res.data)
+        wx.hideLoading()
+        // 判断当前page是否是第一页，如果是第一页，那么设置videoList为空
+        if (page == 1) {
+          _this.setData({
+            myVideoList: []
+          })
+        }
+        let myVideoList = res.data.data.rows,
+          newVideoList = _this.data.myVideoList
+        _this.setData({
+          myVideoPage: page,
+          myVideoList: newVideoList.concat(myVideoList),
+          myVideoTotal: res.data.data.total,
+        });
+        console.log("_this.data", _this.data)
+      }
+    })
+  },
+  getMyFollowList: function(page) {
+    let serverUrl = this.data.serverUrl,
+      userId = app.globalData.currentUserId,
+      _this = this
+    wx.showLoading({
+      title: '加载中...'
+    })
+    wx.request({
+      url: serverUrl + '/video/showfollowusers?userId=' + userId,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        console.log("followUserList:", res.data)
+        wx.hideLoading()
+        // 判断当前page是否是第一页，如果是第一页，那么设置videoList为空
+        if (page == 1) {
+          _this.setData({
+            followUserList: []
+          })
+        }
+        let followUserList = res.data.data.rows,
+          newFollowUserList = _this.data.followUserList
+        _this.setData({
+          followUserPage: page,
+          followUserList: newFollowUserList.concat(followUserList),
+          followUserTotal: res.data.data.total,
+        });
+      }
+    })
+  },
+  lower: function() {
+    let currentPage = this.data.myVideoPage,
+      totalPage = this.data.myVideoTotal,
+      page = 1
+    switch (this.data.active) {
+      case 0:
+        currentPage = this.data.myVideoPage
+        totalPage = this.data.myVideoTotal
+        if (currentPage == totalPage) {
+          wx.showToast({
+            title: '已经没有视频了~',
+            icon: 'none'
+          })
+          return;
+        }
+        this.getMyVideoList(page + 1)
+        break;
+      case 1:
+        currentPage = this.data.collectVideoPage
+        totalPage = this.data.collectVideoTotal
+        if (currentPage == totalPage) {
+          wx.showToast({
+            title: '已经没有视频了~',
+            icon: 'none'
+          })
+          return;
+        }
+        this.getMyCollectList(page + 1)
+        break;
+      case 2:
+        currentPage = this.data.followUserPage
+        totalPage = this.data.followUserTotal
+        if (currentPage == totalPage) {
+          wx.showToast({
+            title: '已经没有关注者了~',
+            icon: 'none'
+          })
+          return;
+        }
+        this.getMyFollowList(page + 1)
+        break;
+    }
+  },
+  showVideoInfo: function(e) {
+    let videoList = []
+    switch (this.data.active) {
+      case 0:
+        videoList = this.data.myVideoList
+        break;
+      case 1:
+        videoList = this.data.collectVideoList
+        break;
+    }
+    let arrIndex = e.target.dataset.arrIndex,
+      videoInfo = JSON.stringify(videoList[arrIndex])
+    wx.navigateTo({
+      url: '../video-detail/video-detail?videoInfo=' + videoInfo,
+    })
   }
 })
